@@ -4,18 +4,23 @@ from guestbook.models import Guestbook
 
 # Create your views here.
 
-def deleteform(request):
-    #uestbook = Guestbook()
+def delete(request):
+    #guestbook = Guestbook()
     #guestbook.name = request.POST['name']
     #guestbook.password = request.POST['password']
     #guestbook.message = request.POST['message']
-    count = Guestbook.objects.filter(id=request.POST['id']).filter(password='').count()
+    count = Guestbook.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).count()
 
     if count != 0:
-        Guestbook.objects.filter(id=request.POST['id']).filter(password='').delete()
+        Guestbook.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).delete()
+    # Guestbook.save()
+    return HttpResponseRedirect('/guestbook')
 
-    # guestbook.save()
 
+def deleteform(request):
+    id = request.GET.get('id')
+    context = {'id': id}
+    return render(request, 'guestbook/deleteform.html', context)
 
 def index(request):
     guestbook_list = Guestbook.objects.all().order_by('-regdate')
@@ -27,7 +32,7 @@ def add(request):
     guestbook = Guestbook()
     guestbook.name = request.POST['name']
     guestbook.password = request.POST['password']
-    guestbook.message = request.POST['message']
+    guestbook.message = request.POST['content']
 
     guestbook.save()
 
