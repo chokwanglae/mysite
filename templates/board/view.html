@@ -6,26 +6,34 @@
 
 {% block content %}
 <div id="board" class="board-form">
-	<table class="tbl-ex">
-		<tr>
+
+	<table class="tbl-ex"><tr>
+
 			<th colspan="2">글보기</th>
 		</tr>
 		<tr>
 			<td class="label">제목</td>
-			<td>{{ posts.title }}</td>
+
+{% for posts in posts_list %}
+			{{posts.title}}
+{% endfor %}
+
+
 		</tr>
 		<tr>
 			<td class="label">내용</td>
 			<td>
 				<div class="view-content">
-					{{ posts.content|linebreaksbr }}
+					 {{ posts.content|linebreaksbr }}
 				</div>
 			</td>
 		</tr>
 	</table>
+
 	<div class="bottom">
 		<a href="/board">글목록</a>
 		<a href="/board/modify?{{posts.id}}">글수정</a>
 	</div>
 </div>
+
 {% endblock %}
