@@ -9,12 +9,14 @@ def delete(request):
     #guestbook.name = request.POST['name']
     #guestbook.password = request.POST['password']
     #guestbook.message = request.POST['message']
-    count = Guestbook.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).count()
-
-    if count != 0:
-        Guestbook.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).delete()
-    # Guestbook.save()
+    # count = Guestbook.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).count()
+    #
+    # if count != 0:
+    #     Guestbook.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).delete()
+    Guestbook.objects.filter(id=request.POST['b']).filter(password=request.POST['password']).delete()
     return HttpResponseRedirect('/guestbook')
+    # Guestbook.save()
+
 
 
 def deleteform(request):

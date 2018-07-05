@@ -37,12 +37,14 @@ urlpatterns = [
     path('guestbook/', guestbook_views.index),
     path('guestbook/add', guestbook_views.add),
     path('guestbook/delete', guestbook_views.delete),
-    path('guestbook/deleteform/', board_views.deleteform),
+    path('guestbook/deleteform/', guestbook_views.deleteform),
     path('board/', board_views.board),
     path('board/view', board_views.view),
     path('board/list', board_views.list),
     path('board/writeform/', board_views.writeform),
     path('board/write',board_views.write),
+    path('board/delete', board_views.delete),
+    path('board/deleteform/', board_views.deleteform),
     path('board/modify', board_views.modify)
 
 ]

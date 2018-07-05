@@ -20,17 +20,17 @@
 			<th>글쓴이</th>
 			<th>조회수</th>
 			<th>작성일</th>
-			<th>&nbsp;</th>
+			<th>삭제</th>
 		</tr>
 
 		{% for posts in posts_list %}
 		<tr>
 			<td>{{ posts_list.count | add:1 | sub:forloop.counter }}</td>
 			<td><a href="/board/view?id={{posts.id}}">{{ posts.title }}</a></td>
-			<td>{{ posts.user.name }}</td>
+			<td>{{ posts.user.id }}</td>
 			<td>{{ posts.hit }}</td>
-			<td>{{ posts.regdate|date:'Y-m-d H:i:s' }}</td>
-			<td><a href="/board/deleteform?{{posts.id}}" class="del">삭제</a></td>
+			<td>{{ posts.regdate|date:'Y-m-d H:i:s'}}</td>
+			<td><a href="/board/delete?id={{posts.id}}" class="del">삭제 </a></td>
 			<!--/board/delete?id={{posts.id}}-->
 		</tr>
 		{% endfor %}

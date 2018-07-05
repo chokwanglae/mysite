@@ -1,5 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+
+
 from board.models import Board
 
 # Create your views here.
@@ -36,16 +38,18 @@ def deleteform(request):
 
     id = request.GET.get('id')
     context = {'id': id}
-   # return render(request, 'board/deleteform.html', context)
+    return render(request, 'board/',context)
 
 def delete(request):
-    count = board.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).count()
+    # count = board.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).count()
+    #
+    # if count != 0:
+    #     Board.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).delete()
+    # # Guestbook.save()
+    # return HttpResponseRedirect('/board')
 
-    if count != 0:
-        Board.objects.filter(id=request.POST['id']).filter(password=request.POST['password']).delete()
-    # Guestbook.save()
+    Board.objects.filter(id=request.GET['id']).filter(user_id=request.session['authuser'].get('id')).delete()
     return HttpResponseRedirect('/board')
-
 
 
 def list(request):
@@ -58,6 +62,7 @@ def list(request):
     return render(request, 'board/list.html')
 def view(request):
     post_objects = Board.objects.get(id=request.GET['id'])
+    Board.objects.filter(id=request.GET['id'])
     context = {'board': board}
     return render(request, 'board/view.html',context)
 
