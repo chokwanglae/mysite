@@ -68,17 +68,26 @@ def view(request):
 
 def modifyform(request):
     board = Board.objects.filter(id=request.GET['id'])
+
     print(board)
+
     posts_list = {'posts_list': board}
 
     return render(request, 'board/modify.html', posts_list)
 
 
 def modify(request):
+    print(Board.objects.filter(id=request.POST['id']))
+    board= Board.objects.filter(id=request.POST['id'])
+    print(board)
 
-    print(Board.objects.filter(id=request.POST('id')))
     user_id = request.session['authuser']['id']
+
+
     board.title = request.POST['title']
+
     board.content = request.POST['content']
-    board.save
-    return render(request, 'board/veiw?id=')
+
+    board.user =User.objects.get(id=user_id)
+    board.save()
+    return render(request, 'board/veiw?id='+request['posts_id'])
