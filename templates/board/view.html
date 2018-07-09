@@ -1,38 +1,40 @@
 {% extends "../base.html" %}
+{% load mathfilters %}
 
 {% block css_link %}
 <link href="/assets/css/board.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block content %}
+
 <div id="board" class="board-form">
-
-	<table class="tbl-ex"><tr>
-
+	{% for posts in posts_list%}
+	<table class="tbl-ex">
+		<tr>
 			<th colspan="2">글보기</th>
 		</tr>
+
 		<tr>
 			<td class="label">제목</td>
-
-{% for posts in posts_list %}
-			{{posts.title}}
-{% endfor %}
-
-
+			<td>{{ posts.title }}</td>
 		</tr>
 		<tr>
 			<td class="label">내용</td>
+
 			<td>
 				<div class="view-content">
-					 {{ posts.content|linebreaksbr }}
+			    {{ posts.content }}
 				</div>
 			</td>
 		</tr>
-	</table>
+
+
+	</table>{%endfor%}
 
 	<div class="bottom">
+
 		<a href="/board">글목록</a>
-		<a href="/board/modify?{{posts.id}}">글수정</a>
+		<a href="/board/modify?id={{posts.id}}">글수정</a>
 	</div>
 </div>
 
