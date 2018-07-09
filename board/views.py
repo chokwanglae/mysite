@@ -54,7 +54,7 @@ def delete(request):
 
 def list(request):
     board = Board()
-    board.user_id = request.POST.get('user_id')
+    board.user.id = request.POST.get('user.id')
     board.tilte = request.POST['title']
     board.content = request.POST['content']
 
@@ -79,10 +79,11 @@ def modifyform(request):
 def modify(request):
 
     board = Board()
-    board = request.POST['user.id']
+    board.id = request.POST['id']
     board.title = request.POST['title']
     board.content = request.POST['content']
-    # board.user = (User.objects.filter(id=request.session.get('authuser')['id']).filter( password=request.session.get('authuser')['password']))
+    #board.user = (User.objects.filter(id=request.session.get('authuser')['id']).filter( password=request.session.get('authuser')['password']))
     board.save()
 
-    return render(request, 'board/view?id={{posts.id}}' +request.POST['id'])
+
+    return render(request, 'board/view?id ='+request.POST['id'])

@@ -30,7 +30,7 @@
 			<td>{{ posts.user.id }}</td>
 			<td>{{ posts.hit }}</td>
 			<td>{{ posts.regdate|date:'Y-m-d H:i:s'}}</td>
-			<td><a href="/board/delete?id={{posts.id}}" class="del">삭제 </a></td>
+			<td><a href="/board/delete?id={{posts.id}}" class="del"><img delete="delete" src="/mysite/static/images/recycle.png ">삭제 </a></td>
 			<!--/board/delete?id={{posts.id}}-->
 		</tr>
 		{% endfor %}
