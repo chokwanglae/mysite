@@ -79,7 +79,7 @@ def modifyform(request):
 def modify(request):
     print(Board.objects.filter(id=request.POST['id']))
     posts= Board.objects.filter(id=request.POST['id'])
-    print(board)
+    print(posts)
 
     user_id = request.session['authuser']['id']
 
