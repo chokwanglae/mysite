@@ -32,9 +32,10 @@
 	</table>{%endfor%}
 
 	<div class="bottom">
-
+	{% for posts in posts_list%}
 		<a href="/board">글목록</a>
 		<a href="/board/modifyform?id={{posts.id}}">글수정</a>
+		{% endfor%}
 	</div>
 </div>
 
