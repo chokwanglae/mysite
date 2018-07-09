@@ -9,7 +9,7 @@
 
 <div id="board">
 
-	<form class="board-form" method="post" action="">{% csrf_token %}
+	<form class="board-form" method="post" action="/board/modify">{% csrf_token %}
 {%for posts in posts_list %}
 		<table class="tbl-ex">
 			<tr>
